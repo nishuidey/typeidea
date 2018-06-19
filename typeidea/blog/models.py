@@ -65,14 +65,19 @@ class Post(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
+    def show_status(self):
+        return '当前状态:%s' % self.status
+    show_status.short_description = '展示状态'
+
     class Meta:
         verbose_name = verbose_name_plural = "文章"
+
+    def __str__(self):
+        return self.title
 
     def __unicode__(self):
         return self.title
 
-    def __str__(self):
-        return self.title
 
     
 
