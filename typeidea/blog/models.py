@@ -51,7 +51,6 @@ class Tag(models.Model):
 class Post(models.Model):
     STATUS_ITEMS = (
         (1, '上线'),
-        (2, '草稿'),
         (3, '删除'),
     )
     title = models.CharField(max_length=50, null=True, blank=True, verbose_name="标题")
@@ -77,6 +76,11 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class TestManager(models.Manager):
+    def get_queryset(self):
+        return super(TestManager, self).get_queryset().filter(status=1)
 
 
     
